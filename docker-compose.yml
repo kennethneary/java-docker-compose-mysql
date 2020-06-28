@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  mysql-service:
+    image: mysql:5.7
+    networks:
+      - spring-boot-mysql-network
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: members
+      MYSQL_ROOT_HOST: '%'
+    volumes:
+      - ./sql-scripts:/docker-entrypoint-initdb.d
+  web-service:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 4000:4000
+    networks:
+      - spring-boot-mysql-network
+    depends_on:
+      - mysql-service
+
+networks:
+  spring-boot-mysql-network:
+    driver: bridge
