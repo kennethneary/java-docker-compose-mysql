@@ -17,8 +17,8 @@ public class MemberController {
     private MemberService memberService;
 
     @GetMapping("/members")
-    public List<Member> all() {
-        return this.memberService.getAllMembers();
+    public ResponseEntity<List<Member>> all() {
+        return ResponseEntity.ok(this.memberService.getAllMembers());
     }
 
     @PostMapping("/members")
