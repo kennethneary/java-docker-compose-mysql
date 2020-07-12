@@ -30,7 +30,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     public Member updateMember(final Member member, final Long id) {
-        final Member updateMember = memberRepository.findById(id).orElse(null);
+        final Member updateMember = this.getMember(id);
         if (updateMember != null) {
             updateMember.setFirstName(member.getFirstName());
             updateMember.setLastName(member.getLastName());

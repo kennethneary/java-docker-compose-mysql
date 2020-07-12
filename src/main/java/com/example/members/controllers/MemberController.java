@@ -33,7 +33,7 @@ public class MemberController {
     }
 
     @GetMapping("/members/{id}")
-    public ResponseEntity<Member> updateMember(@PathVariable final Long id) {
+    public ResponseEntity<Member> getMember(@PathVariable final Long id) {
         final Member member = this.memberService.getMember(id);
         if (member != null) {
             return ResponseEntity.ok(member);
