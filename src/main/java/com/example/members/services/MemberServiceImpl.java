@@ -31,10 +31,12 @@ public class MemberServiceImpl implements MemberService {
 
     public Member updateMember(final Member member, final Long id) {
         final Member updateMember = this.getMember(id);
-        if (updateMember != null) {
-            updateMember.setFirstName(member.getFirstName());
-            updateMember.setLastName(member.getLastName());
+        if (updateMember == null) {
+           return null;
         }
+        updateMember.setFirstName(member.getFirstName());
+        updateMember.setLastName(member.getLastName());
+        updateMember.setEmail(member.getEmail());
         final Member objMember = memberRepository.save(updateMember);
         return objMember;
     }
